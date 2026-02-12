@@ -1,32 +1,40 @@
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HeroController : MonoBehaviour
 {
+    private Rigidbody2D rb;
     
-    [SerializeField] private float _moveSpeed = 5;
-    //[SerializeField] private float _rotateSpeed = 5;
-    
-    
-    private CharacterController _characterController;
-    private Vector3 _move;
-    
-    private void Awake()
+    private float horizontalValue;
+
+    [SerializeField] public float speed = 1;
+
+    void Awake()
     {
-        _characterController = GetComponent<CharacterController>(); 
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update() 
-    { 
-        Vector3 moveDirection = transform.TransformDirection(_move);
-        moveDirection *= _moveSpeed;
-    }
-
-
-    private void OnLook(InputValue input)
+    void Update()
     {
-        Vector2 look = input.Get<Vector2>();
-        _move.x = look.x;
-        _move.y = look.y;
+        horizontalValue = Input.GetAxisRaw("Horizontal");
     }
+
+    private void FixedUpdate()
+    {
+        Move(horizontalValue);
+    }
+
+    private void Move(float dir)
+    {
+        float xVal = horizontalValue * speed * Time.deltaTime;
+
+    private Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y);
+    
+    rb.velocity = targetVelocity;
+}
+    
+    
+    
+
 }

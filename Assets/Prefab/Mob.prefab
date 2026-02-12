@@ -125,16 +125,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cc53e5d9b19054489023e07019c68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  _moveSpeed: 10
+  _moveSpeed: 5
   _seed: logan
+  _lifeTime: 5
   _waypoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   _currentWaypoint: {fileID: 0}
-  _waypointIndex: 2
   _waitTimer: 1
   _waitDuration: 0
-  _minWaitDuration: 1
+  _minWaitDuration: -1
   _maxWaitDuration: 5

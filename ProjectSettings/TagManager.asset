@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Waypoint
   - Spawner
-  - Waypoints
   layers:
   - Default
   - TransparentFX
@@ -41,8 +40,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2797794255
+    locked: 0
+  - name: SecondBackground
+    uniqueID: 3684870089
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: forground
+    uniqueID: 3380151173
     locked: 0
   m_RenderingLayers:
   - Default

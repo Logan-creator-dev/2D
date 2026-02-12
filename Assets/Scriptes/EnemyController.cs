@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour
     [Header("Waypoints")]
     [SerializeField] private List<Transform> _waypoints;
     [SerializeField] private Transform _currentWaypoint;
-    [SerializeField] private int _waypointIndex;
     
     [Header("Waiting")]
     [SerializeField] private float _waitTimer;
@@ -19,17 +18,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _minWaitDuration = 1;
     [SerializeField] private int _maxWaitDuration =5;
 
+    private int _waypointIndex;
     private System.Random _random;
 
     public void Setup(List<Transform> waypoints)
     {
         _waypoints = waypoints;
         
-        if (_currentWaypoint == null)
-            _currentWaypoint = _waypoints[_waypointIndex];
-
         if (_random == null)
             _random = new System.Random(_seed.GetHashCode());
+        
+        if (_currentWaypoint == null &&  _waypoints.Count > 0)
+            _currentWaypoint = _waypoints[_random.Next(0, _waypoints.Count)];
     }
 
     private void Start()
@@ -39,6 +39,8 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        if (_currentWaypoint == null) return;
+        
         Vector3 movement = _currentWaypoint.position - transform.position;
 
         //If the target is reached
